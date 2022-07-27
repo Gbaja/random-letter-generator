@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random letter generator</title>
+  <style>
+    html {
+      font-size: 100%;
+    }
+    main {
+      margin: 10px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+    }
+    p, label {
+      font-size: 1.5rem;
+    }
+    #letter {
+      color: red;
+    }
+    input {
+      height: 30px;
+      margin-left: 10px;
+    }
+    button {
+      background-color: red;
+      color: white;
+      font-size: 2rem;
+      border: none;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 20px auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Random letter generator</h1>
+    <p>Enter the letters you have used so far separated by comma in the box below. Example: f,g,i</p>
+    <label for="inputField">Letters used</label>
+    <input type="input" id="inputField"/>
+    <p id="letter"></p>
+    <button onclick="generateLetter()">Generate letter</button>
+  </main>
+  <script>
+    function generateLetter(){
+      const lettersUsed = document.getElementById("inputField").value.toLowerCase().trim().split(',');
+      const alphabets = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".split(',');
+      const alphabetsToUse = alphabets.filter( function( letter ) {
+        return lettersUsed.indexOf( letter ) < 0;
+      } );
+      const randomCharacter = alphabetsToUse[Math.floor(Math.random()*alphabetsToUse.length)].toUpperCase();
+      document.getElementById("letter").innerHTML = "Letter generated is " + randomCharacter;
+    }
+  </script>
+</body>
+</html>
